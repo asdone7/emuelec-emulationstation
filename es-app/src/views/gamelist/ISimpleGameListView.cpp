@@ -187,7 +187,7 @@ void ISimpleGameListView::update(const int deltaTime)
 
 	if (mYButton.isLongPressed(deltaTime))
 	{
-		moveToRandomGame();
+		showQuickSearch();
 		return;
 	}
 	
@@ -215,7 +215,7 @@ bool ISimpleGameListView::input(InputConfig* config, Input input)
 
 	if (mYButton.isShortPressed(config, input))
 	{
-		showQuickSearch();
+		moveToRandomGame();
 		return true;
 	}
 
@@ -570,7 +570,7 @@ std::vector<HelpPrompt> ISimpleGameListView::getHelpPrompts()
 	else if (!UIModeController::getInstance()->isUIModeKid())
 		prompts.push_back(HelpPrompt("x", _("FAVORITE")));
 
-	prompts.push_back(HelpPrompt("y", _("SEARCH") + std::string("/") + _("RANDOM (HOLD)")));
+	prompts.push_back(HelpPrompt("y", _("RANDOM") + std::string("/") + _("SEARCH (HOLD)")));
 
 	return prompts;
 }
