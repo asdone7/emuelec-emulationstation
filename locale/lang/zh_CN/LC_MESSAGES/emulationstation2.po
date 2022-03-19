@@ -3717,3 +3717,156 @@ msgstr "重启到 电视盒子"
 
 #~ msgid "UPDATE FAILED, THE SYSTEM WILL NOW REBOOT"
 #~ msgstr "更新失败，系统即将重启"
+
+msgid "SHOW RETROARCH FPS"
+msgstr "全能模拟器显示FPS帧"
+
+msgid "RANDOMIZE BOOT VIDEO"
+msgstr "随机视频"
+
+msgid "DEFAULT YOUTUBE SEARCH WORD"
+msgstr "默认YouTube搜索词"
+
+msgid "AUTO CONFIG ADVANCEMAME GAMEPAD"
+msgstr "自动配置ADVANCEMAME手柄"
+
+msgid "RETROARCH MENU"
+msgstr "全能模拟器菜单"
+
+msgid "EXTERNAL MOUNT OPTIONS"
+msgstr "外部安装选项"
+
+msgid "DANGER ZONE"
+msgstr "危险设置区域"
+
+msgid "EXTERNAL DEVICE"
+msgstr "外部设备"
+
+msgid "Select the mounted drive to be used for ROMS."
+msgstr "选择用于挂载ROMS的驱动器"
+
+msgid "RETRY TIMES"
+msgstr "重试次数"
+
+msgid "How many times to retry the mount on boot."
+msgstr "在引导时重试挂载次数"
+
+msgid "FORCE MOUNT NOW"
+msgstr "强制立即挂载"
+
+msgid ""
+"WARNING THIS WILL RESTART EMULATIONSTATION!\n"
+"\n"
+"System will try to mount the external drive selected "
+msgstr ""
+"警告这将重新启动EmuELEC!\n"
+"\n"
+"系统将尝试装入选定的外部驱动器"
+
+msgid ""
+". Make sure you have all the settings saved before running this.\n"
+"\n"
+"TRY TO MOUNT EXTERNAL AND RESTART?"
+msgstr ""
+". 运行此操作之前，请确保保存了所有设置.\n"
+"\n"
+"是否尝试挂载外部设备并重新启动?"
+
+msgid ""
+"OGA OC is HIGHLY experimental, you may encounter random lockups or your "
+"device might not boot anymore. \n"
+msgstr "OGA OC 是高度实验性的，您可能会遇到随机锁定或“设备可能无法再启动."
+
+msgid ""
+"In case you cannot boot anymore, create an empty file called \"no_oc.oga\" "
+"on the boot (EMUELEC) partition.\n"
+"\n"
+msgstr "如果您无法再启动，请在(EMUELEC)分区上创建一个名为 \"no_oc.oga\"的空文件."
+
+msgid ""
+"There is also the posibility of SD card file corruption!!! Only enable OC if "
+"you agree to the risks!\n"
+"\n"
+msgstr "启用OC的话SD卡可能损坏!!! 您是否同意承担风险!"
+
+msgid "CLOUD BACKUP SETTINGS AND GAME SAVES"
+msgstr "云备份设置和云游戏保存"
+
+msgid ""
+"WARNING THIS WILL RESTART EMULATIONSTATION!\n"
+"\n"
+"This will backup your game saves, savestates and emuelec configs to the "
+"cloud service configured on rclone.conf\n"
+"\n"
+"BACKUP TO CLOUD AND RESTART?"
+msgstr ""
+"警告这将重新启动EmuELEC!\n"
+"\n"
+"将你的游戏存档，保存状态和emuelec配置备份到云端 "
+"\n"
+"是否备份到云端并重新启动?"
+
+msgid "CLOUD RESTORE SETTINGS AND GAME SAVES"
+msgstr "从云恢复设置和游戏保存"
+
+msgid ""
+"WARNING THIS WILL RESTART EMULATIONSTATION!\n"
+"\n"
+"This will restore your game saves, savestates and emuelec configs from the "
+"cloud service configured on rclone.conf, it will overwrite any existing "
+"file!!\n"
+"\n"
+"RESTORE FROM CLOUD AND RESTART?"
+msgstr ""
+"警告这将重新启动EmuELEC!\n"
+"\n"
+"从云端恢复游戏存档，保存状态和emuelec配置到本地 "
+"请注意这将覆盖本地现有的文件 "
+"\n"
+"是否恢复云端备份到本地并重新启动?"
+
+msgid "LOCAL BACKUP EMUELEC CONFIGS"
+msgstr "本地备份emuelec配置"
+
+msgid "RESET RETROARCH CONFIG TO DEFAULT"
+msgstr "将全能模拟器配置重置为默认值"
+
+msgid ""
+"WARNING: RETROARCH CONFIG WILL RESET TO DEFAULT\n"
+"\n"
+"PER-CORE CONFIGURATIONS WILL NOT BE AFFECTED BUT NO BACKUP WILL BE CREATED!\n"
+"\n"
+"RESET RETROARCH CONFIG TO DEFAULT?"
+msgstr ""
+"警告: 全能模拟器配置将重置为默认\n"
+"\n"
+"不影响核心独立的配置!\n"
+"\n"
+"是否将全能模拟器配置重置为默认?"
+
+msgid "FORCE UPDATE"
+msgstr "强制更新"
+
+msgid "EMUELEC SETTINGS"
+msgstr "EmuELEC设置"
+
+msgid "A REBOOT OF THE SYSTEM IS REQUIRED TO APPLY THE NEW CONFIGURATION"
+msgstr "重启系统后新配置才能生效"
+
+msgid "STATUS LED"
+msgstr "LED灯状态"
+
+msgid "Changes will need an EmulationStation restart."
+msgstr "重启EmuELEC后新配置才能生效"
+
+msgid "ENABLE BLUETOOTH"
+msgstr "启用蓝牙"
+
+msgid "ENABLE MAX PERFORMANCE"
+msgstr "启用最大性能"
+
+msgid "INTEGER SCALING (OVERSCALE)"
+msgstr "整倍缩放 (超标缩放)"
+
+msgid "TIMEZONE"
+msgstr "时区"
