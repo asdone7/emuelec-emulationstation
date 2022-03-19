@@ -92,10 +92,10 @@ msgid "enter path to map"
 msgstr "输入地图路径"
 
 msgid "Bezel (16:9)"
-msgstr "框架 (16:9)"
+msgstr "边框 (16:9)"
 
 msgid "enter path to bezel (16:9)"
-msgstr "输入框架所在路径 (16:9)"
+msgstr "输入边框所在路径 (16:9)"
 
 msgid "Cartridge"
 msgstr "存储器"
@@ -349,7 +349,7 @@ msgid "THEME UNINSTALLED SUCCESSFULLY"
 msgstr "主题卸载成功"
 
 msgid "BEZELS INSTALLED SUCCESSFULLY"
-msgstr "框架安装成功"
+msgstr "边框安装成功"
 
 msgid "BEZELS UNINSTALLED SUCCESSFULLY"
 msgstr "BEZELS卸载成功"
@@ -1205,7 +1205,7 @@ msgid "SCRAPE FANART"
 msgstr "抓取同人作品"
 
 msgid "SCRAPE BEZEL (16:9)"
-msgstr "框架比例(16:9)"
+msgstr "边框比例(16:9)"
 
 msgid "SCRAPE BOX BACKSIDE"
 msgstr "抓取盒子背面图"
@@ -1382,7 +1382,7 @@ msgstr "弯曲"
 
 msgctxt "game_options"
 msgid "ZFAST"
-msgstr "ZFAST(贼快) 开发框架"
+msgstr "ZFAST(贼快) 开发边框"
 
 msgctxt "game_options"
 msgid "FLATTEN-GLOW"
@@ -1686,7 +1686,7 @@ msgstr ""
 "这将隐藏大多数菜单选项，以防止更改系统.\n"
 "要解锁并返回完整的UI，输入以下代码:"
 
-msgid "Do you want to proceed ?"
+msgid "Do you want to proceed?"
 msgstr "是否继续?"
 
 msgid "KODI SETTINGS"
@@ -1890,7 +1890,7 @@ msgid "STRETCH BEZELS (4K & ULTRAWIDE)"
 msgstr "弹性挡板（4K和超宽）"
 
 msgid "SHOW TATTOO OVER BEZEL"
-msgstr "在框架上显示图纹"
+msgstr "在边框上显示图纹"
 
 msgid "SYSTEM CONTROLLERS"
 msgstr "系统控制器"
@@ -2876,7 +2876,7 @@ msgstr "禁用屏幕阅读器"
 #~ msgstr "查看BATOCERA手册"
 
 #~ msgid "USE RUN-AHEAD FRAMES"
-#~ msgstr "使用 RUN-AHEAD 框架"
+#~ msgstr "使用 RUN-AHEAD 边框"
 
 #~ msgid "RUN-AHEAD USE SECOND INSTANCE"
 #~ msgstr "RUN-AHEAD 使用第二个实例"
@@ -2891,7 +2891,7 @@ msgstr "禁用屏幕阅读器"
 #~ msgstr "弯曲"
 
 #~ msgid "ZFAST"
-#~ msgstr "ZFAST(贼快) 开发框架"
+#~ msgstr "ZFAST(贼快) 开发边框"
 
 #~ msgid "FLATTEN-GLOW"
 #~ msgstr "FLATTEN-GLOW 着色器集"
@@ -3266,17 +3266,12 @@ msgid "ALWAYS SHOW BOOT VIDEO"
 msgstr "总是显示开机视频"
 
 msgid ""
-"WARNING THIS WILL RESTART EMULATIONSTATION!\n"
-"\n"
-"AFTER THE SCRIPT IS DONE REMEMBER TO COPY THE FILE /storage/roms/backup/"
-"ee_backup_config.tar.gz TO SOME PLACE!\n"
-"\n"
+"WARNING THIS WILL RESTART EMULATIONSTATION!\n\n"
+"AFTER THE SCRIPT IS DONE REMEMBER TO COPY THE FILE /storage/downloads/ee_backup_config.zip TO SOME PLACE SAFE OR IT WILL BE DELETED ON NEXT REBOOT!\n\n"
 "BACKUP CURRENT CONFIG AND RESTART?"
 msgstr ""
-"警告这将重新启动EmuELEC!\n"
-"\n"
-"脚本执行完成后 请到/storage/roms/backup下把ee_backup_config.tar.gz复制到安全处"
-"\n"
+"警告这将重新启动EmuELEC!\n\n"
+"脚本执行完成后 请到/storage/downloads/下把ee_backup_config.zip复制到安全处!\n\n"
 "是否备份当前配置并重新启动?"
 
 msgid "BACKUP EMUELEC CONFIGS"
@@ -3378,25 +3373,25 @@ msgstr "重启到 电视盒子"
 #~ msgstr "选择主题"
 
 #~ msgid "INSTALL BEZELS"
-#~ msgstr "安装框架"
+#~ msgstr "安装边框"
 
 #~ msgid "UNINSTALL BEZELS"
-#~ msgstr "卸载框架"
+#~ msgstr "卸载边框"
 
 #~ msgid "INSTALL THE BEZEL PROJECT"
-#~ msgstr "安装框架项目"
+#~ msgstr "安装边框项目"
 
 #~ msgid "SELECT SYSTEM WHERE BEZELS WILL BE (RE)INSTALLED"
 #~ msgstr "选择安装或重新安装边框的系统"
 
 #~ msgid "UNINSTALL THE BEZEL PROJECT"
-#~ msgstr "卸载框架项目"
+#~ msgstr "卸载边框项目"
 
 #~ msgid "SELECT SYSTEM WHERE BEZELS WILL BE REMOVED"
-#~ msgstr "选择移除框架的游戏平台"
+#~ msgstr "选择移除边框的游戏平台"
 
 #~ msgid "BEZELS DELETED SUCCESSFULLY"
-#~ msgstr "框架删除程控"
+#~ msgstr "边框删除程控"
 
 #~ msgid "SORT CUSTOM COLLECTIONS AND SYSTEMS"
 #~ msgstr "对自定合辑和系统进行排序"
@@ -3572,7 +3567,7 @@ msgstr "重启到 电视盒子"
 #~ msgstr "正在游玩: "
 
 #~ msgid "SELECT SYSTEM WHERE BEZELS WILL BE INSTALLED"
-#~ msgstr "选择安装框架的游戏平台"
+#~ msgstr "选择安装边框的游戏平台"
 
 #~ msgid "DISPLAY / HIDE SYSTEMS"
 #~ msgstr "显示/隐藏游戏平台"
