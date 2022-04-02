@@ -1032,7 +1032,7 @@ msgid "SCRAPE BEZEL (16:9)"
 msgstr "边框比例(16:9)"
 
 msgid "SCRAPE BOX BACKSIDE"
-msgstr "抓取盒子背面图"
+msgstr "抓取包装盒背面图"
 
 msgid "SCRAPE MAP"
 msgstr "抓取地图"
@@ -1041,7 +1041,7 @@ msgid "SCRAPE MANUAL"
 msgstr "抓取手册"
 
 msgid "SCRAPE PADTOKEY SETTINGS"
-msgstr "抓取pad按键设置"
+msgstr "抓取键盘按键设置"
 
 msgid "fade"
 msgstr "淡出"
@@ -1578,12 +1578,12 @@ msgid "SWITCH A & B BUTTONS IN EMULATIONSTATION"
 msgstr "在EMULATIONSTATION中切换 A/B 按键"
 
 msgid "ACCESS GAME OPTIONS WITH NORTH BUTTON"
-msgstr "使用北键访问游戏选项"
+msgstr "使用Y/△/1键进游戏选项"
 
 msgid ""
 "Switches to short-press North for Savestates & long-press South button for "
 "Game Options"
-msgstr "更改北键按钮(保存状态)和长按南按钮(游戏选项)"
+msgstr "切换为短按Y/△/1键按钮(保存状态)和长按A/x/3按钮(游戏选项)"
 
 msgid "CONTROL EMULATIONSTATION WITH FIRST JOYSTICK ONLY"
 msgstr "仅使用第一个手柄控制EmuELEC"
@@ -3118,19 +3118,19 @@ msgid "DISCARD CHANGES"
 msgstr "放弃更改"
 
 msgctxt "joystick"
-msgid "UP"
+msgid "D-PAD UP"
 msgstr "上"
 
 msgctxt "joystick"
-msgid "DOWN"
+msgid "D-PAD DOWN"
 msgstr "下"
 
 msgctxt "joystick"
-msgid "LEFT"
+msgid "D-PAD LEFT"
 msgstr "左"
 
 msgctxt "joystick"
-msgid "RIGHT"
+msgid "D-PAD RIGHT"
 msgstr "右"
 
 msgctxt "joystick"
@@ -3140,6 +3140,46 @@ msgstr "开始"
 msgctxt "joystick"
 msgid "SELECT"
 msgstr "选择"
+
+msgctxt "joystick"
+msgid "BUTTON A / EAST"
+msgstr "按键 A/x/3 (以各手柄标准为准)"
+
+msgctxt "joystick"
+msgid "BUTTON B / EAST"
+msgstr "按键 B/○/2 (以各手柄标准为准)"
+
+msgctxt "joystick"
+msgid "BUTTON X / EAST"
+msgstr "按键 X/□/4 (以各手柄标准为准)"
+
+msgctxt "joystick"
+msgid "BUTTON Y / EAST"
+msgstr "按键 Y/△/1 (以各手柄标准为准)"
+
+msgctxt "joystick"
+msgid "LEFT SHOULDER"
+msgstr "L1"
+
+msgctxt "joystick"
+msgid "RIGHT SHOULDER"
+msgstr "R1"
+
+msgctxt "joystick"
+msgid "LEFT TRIGGER"
+msgstr "L2"
+
+msgctxt "joystick"
+msgid "RIGHT TRIGGER"
+msgstr "R2"
+
+msgctxt "joystick"
+msgid "LEFT THUMB"
+msgstr "L3 / 左摇杆按下 "
+
+msgctxt "joystick"
+msgid "RIGHT THUMB"
+msgstr "R3 / 右摇杆按下"
 
 msgctxt "joystick"
 msgid "LEFT ANALOG UP"
@@ -3174,7 +3214,7 @@ msgid "RIGHT ANALOG RIGHT"
 msgstr "右摇杆 右"
 
 msgctxt "joystick"
-msgid "HOTKEY"
+msgid "HOTKEY ENABLE"
 msgstr "热键"
 
 msgid "CONFIGURING"
