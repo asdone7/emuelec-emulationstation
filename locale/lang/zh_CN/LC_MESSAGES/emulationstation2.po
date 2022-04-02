@@ -3146,15 +3146,15 @@ msgid "BUTTON A / EAST"
 msgstr "按键 A/x/3 (以各手柄标准为准)"
 
 msgctxt "joystick"
-msgid "BUTTON B / EAST"
+msgid "BUTTON B / SOUTH"
 msgstr "按键 B/○/2 (以各手柄标准为准)"
 
 msgctxt "joystick"
-msgid "BUTTON X / EAST"
+msgid "BUTTON X / NORTH"
 msgstr "按键 X/□/4 (以各手柄标准为准)"
 
 msgctxt "joystick"
-msgid "BUTTON Y / EAST"
+msgid "BUTTON Y / WEST"
 msgstr "按键 Y/△/1 (以各手柄标准为准)"
 
 msgctxt "joystick"
