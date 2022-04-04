@@ -2267,7 +2267,7 @@ msgid "EDIT REMAP"
 msgstr "编辑映射"
 
 msgid "JOY BUTTON "
-msgstr "JOY 按钮"
+msgstr "手柄按钮"
 
 msgid "CANNOT SAVE DEFAULT BUTTON MAPS."
 msgstr "无法保存默认按钮映射"
@@ -3119,19 +3119,19 @@ msgstr "放弃更改"
 
 msgctxt "joystick"
 msgid "D-PAD UP"
-msgstr "上"
+msgstr "方向键 上"
 
 msgctxt "joystick"
 msgid "D-PAD DOWN"
-msgstr "下"
+msgstr "方向键 下"
 
 msgctxt "joystick"
 msgid "D-PAD LEFT"
-msgstr "左"
+msgstr "方向键 左"
 
 msgctxt "joystick"
 msgid "D-PAD RIGHT"
-msgstr "右"
+msgstr "方向键 右"
 
 msgctxt "joystick"
 msgid "START"
