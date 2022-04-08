@@ -699,8 +699,8 @@ msgstr "正在更新 %s"
 msgid "UPDATE IS READY"
 msgstr "更新已准备就绪"
 
-msgid "REBOOT SYSTEM TO APPLY THE UPDATE"
-msgstr "重启系统并应用"
+msgid "REBOOT TO APPLY"
+msgstr "重启系统生效"
 
 msgid "REALLY UPDATE?"
 msgstr "是否进行更新?"
@@ -1134,6 +1134,18 @@ msgstr "控制器设置"
 
 msgid "CONTROLLER & BLUETOOTH SETTINGS"
 msgstr "控制器和蓝牙设置"
+
+msgid "INTERNAL"
+msgstr "内部"
+
+msgid "ANY EXTERNAL"
+msgstr "任何外部"
+
+msgid "maximum 1920x1080"
+msgstr "最大分辨率 1920x1080"
+
+msgid "maximum 640x480"
+msgstr "最大分辨率 640x480"
 
 msgid "MAIN MENU"
 msgstr "主菜单"

@@ -125,8 +125,10 @@ bool CustomFeatures::loadEsFeaturesFile()
 			}
 
 			EmulatorFeatures::Features emulatorFeatures = EmulatorFeatures::Features::none;
-
 			auto customEmulatorFeatures = loadCustomFeatures(emulator);
+
+			if (customEmulatorFeatures.any([](auto x) { return x.value == "autosave"; })) // Watch if autosave is provided as shared
+				emulatorFeatures = emulatorFeatures | EmulatorFeatures::Features::autosave;
 
 			if (emulator.attribute("features") || customEmulatorFeatures.size() > 0)
 			{
@@ -160,9 +162,12 @@ bool CustomFeatures::loadEsFeaturesFile()
 				{
 					std::string coreName = Utils::String::trim(tmpCoreName);
 
-					EmulatorFeatures::Features coreFeatures = coreNode.attribute("features") ? EmulatorFeatures::parseFeatures(coreNode.attribute("features").value()) : EmulatorFeatures::Features::none;
+					EmulatorFeatures::Features coreFeatures = coreNode.attribute("features") ? EmulatorFeatures::parseFeatures(coreNode.attribute("features").value()) : EmulatorFeatures::Features::none;					
 					auto customCoreFeatures = loadCustomFeatures(coreNode);
 
+					if (customCoreFeatures.any([](auto x) { return x.value == "autosave"; })) // Watch if autosave is provided as shared
+						coreFeatures = coreFeatures | EmulatorFeatures::Features::autosave;
+						
 					bool coreFound = false;
 
 					for (auto it = EmulatorFeatures.begin(); it != EmulatorFeatures.end(); it++)
@@ -206,6 +211,10 @@ bool CustomFeatures::loadEsFeaturesFile()
 
 						EmulatorFeatures::Features systemFeatures = systemNode.attribute("features") ? EmulatorFeatures::parseFeatures(systemNode.attribute("features").value()) : EmulatorFeatures::Features::none;
 						auto customSystemFeatures = loadCustomFeatures(systemNode);
+
+						if (customSystemFeatures.any([](auto x) { return x.value == "autosave"; })) // Watch if autosave is provided as shared
+							systemFeatures = systemFeatures | EmulatorFeatures::Features::autosave;
+
 						if (systemFeatures == EmulatorFeatures::Features::none && customSystemFeatures.size() == 0)
 							continue;
 
