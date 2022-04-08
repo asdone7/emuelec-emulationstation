@@ -2630,19 +2630,19 @@ msgid "SPACE"
 msgstr ""
 
 msgctxt "joystick"
-msgid "UP"
+msgid "D-PAD UP"
 msgstr ""
 
 msgctxt "joystick"
-msgid "DOWN"
+msgid "D-PAD DOWN"
 msgstr ""
 
 msgctxt "joystick"
-msgid "LEFT"
+msgid "D-PAD LEFT"
 msgstr ""
 
 msgctxt "joystick"
-msgid "RIGHT"
+msgid "D-PAD RIGHT"
 msgstr ""
 
 msgctxt "joystick"
@@ -2651,6 +2651,46 @@ msgstr ""
 
 msgctxt "joystick"
 msgid "SELECT"
+msgstr ""
+
+msgctxt "joystick"
+msgid "BUTTON A / EAST"
+msgstr ""
+
+msgctxt "joystick"
+msgid "BUTTON B / SOUTH"
+msgstr ""
+
+msgctxt "joystick"
+msgid "BUTTON X / NORTH"
+msgstr ""
+
+msgctxt "joystick"
+msgid "BUTTON Y / WEST"
+msgstr ""
+
+msgctxt "joystick"
+msgid "LEFT SHOULDER"
+msgstr ""
+
+msgctxt "joystick"
+msgid "RIGHT SHOULDER"
+msgstr ""
+
+msgctxt "joystick"
+msgid "LEFT TRIGGER"
+msgstr ""
+
+msgctxt "joystick"
+msgid "RIGHT TRIGGER"
+msgstr ""
+
+msgctxt "joystick"
+msgid "LEFT THUMB"
+msgstr ""
+
+msgctxt "joystick"
+msgid "RIGHT THUMB"
 msgstr ""
 
 msgctxt "joystick"
@@ -2692,7 +2732,7 @@ msgstr ""
 msgid "CONFIGURING"
 msgstr ""
 
-msgid "KEYBOARD"
+msgid "HOTKEY ENABLE"
 msgstr ""
 
 msgid "CEC"
