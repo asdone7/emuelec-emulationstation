@@ -512,7 +512,7 @@ msgid "SYSTEMS"
 msgstr "游戏平台"
 
 msgid "PAD TO KEYBOARD CONFIGURATION"
-msgstr "pad到键盘自动以"
+msgstr "键盘配置"
 
 msgid "SELECT ACTIONS TO CHANGE"
 msgstr "选择行动来改变"

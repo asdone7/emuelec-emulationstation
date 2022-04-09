@@ -2741,13 +2741,13 @@ msgid "RIGHT ANALOG RIGHT"
 msgstr ""
 
 msgctxt "joystick"
-msgid "HOTKEY"
+msgid "HOTKEY ENABLE"
 msgstr ""
 
 msgid "CONFIGURING"
 msgstr ""
 
-msgid "HOTKEY ENABLE"
+msgid "KEYBOARD"
 msgstr ""
 
 msgid "CEC"
