@@ -252,7 +252,7 @@ void VideoVlcComponent::render(const Transform4x4f& parentTrans)
 #ifdef _RPI_
 			// Rpi : A lot of videos are encoded in 60fps on screenscraper
 			// Try to limit transfert to opengl textures to 30fps to save CPU
-			if (!Settings::getInstance()->getBool("OptimizeVideo") || mElapsed >= 40) // 40ms = 25fps, 33.33 = 30 fps
+			if (!Settings::getInstance()->getBool("OptimizeVideo") || mElapsed >= 33.33) // 40ms = 25fps, 33.33 = 30 fps
 #endif
 			{
 				mContext.mutexes[frame].lock();
