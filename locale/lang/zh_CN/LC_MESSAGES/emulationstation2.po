@@ -268,8 +268,14 @@ msgstr "RetroArch成就"
 msgid "HARDCORE MODE"
 msgstr "专家模式"
 
+msgid "RICH PRESENCE"
+msgstr "细节呈现"
+
 msgid "ENCORE MODE"
 msgstr "加演模式"
+
+msgid "Reset achievements to be able to earn them again."
+msgstr "重置成就,可以再次达成"
 
 msgid "LEADERBOARDS"
 msgstr "排行榜"
@@ -2819,6 +2825,13 @@ msgstr "抓取失败"
 
 msgid "SCRAPING FINISHED"
 msgstr "抓取完成"
+
+msgid ""
+"CALIBRATING GUN\n"
+"Fire on targets to calibrate"
+msgstr ""
+"校准枪\n"
+"射击目标以校准"
 
 msgid "UPDATE GAMELISTS TO APPLY CHANGES."
 msgstr "更新游戏列表到应用更改"

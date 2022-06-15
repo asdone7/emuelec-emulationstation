@@ -41,6 +41,7 @@ set(CHEEVOS_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/rcheevos/src/rcheevos/trigger.c
 	${CMAKE_CURRENT_SOURCE_DIR}/rcheevos/src/rcheevos/value.c
 	${CMAKE_CURRENT_SOURCE_DIR}/rcheevos/src/rhash/hash.c	
+	${CMAKE_CURRENT_SOURCE_DIR}/rcheevos/src/rhash/cdreader.c	
 	${CMAKE_CURRENT_SOURCE_DIR}/rcheevos/src/rhash/md5.h
 	${CMAKE_CURRENT_SOURCE_DIR}/rcheevos/src/rurl/url.c		
 )
@@ -104,6 +105,7 @@ set(LIBRETRO_COMMON_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/libretro-common/src/file/file_path_io.c	
 	${CMAKE_CURRENT_SOURCE_DIR}/libretro-common/src/file/retro_dirent.c	
 	${CMAKE_CURRENT_SOURCE_DIR}/libretro-common/src/compat/compat_strl.c	
+	${CMAKE_CURRENT_SOURCE_DIR}/libretro-common/src/compat/compat_strcasestr.c	
 	${CMAKE_CURRENT_SOURCE_DIR}/libretro-common/src/compat/compat_posix_string.c	
 	${CMAKE_CURRENT_SOURCE_DIR}/libretro-common/src/compat/fopen_utf8.c		
 	${CMAKE_CURRENT_SOURCE_DIR}/libretro-common/src/memmap/memalign.c	
