@@ -45,7 +45,8 @@ std::map<std::string, std::string> langFlag =
 	{ "sw", _U("\uF311") },
 	{ "uk", _U("\uF312") },
 	{ "us", _U("\uF313") },
-	{ "wr", _U("\uF314") }
+	{ "wr", _U("\uF314") },
+	{ "pl", _U("\uF315") }
 };
 
 std::string getLangFlag(const std::string lang)
@@ -94,6 +95,10 @@ GameNameFormatter::GameNameFormatter(SystemData* system)
 	mShowSystemAfterYear =
 		mSortId == FileSorts::RELEASEDATE_SYSTEM_ASCENDING ||
 		mSortId == FileSorts::RELEASEDATE_SYSTEM_DESCENDING;
+
+	mShowGameTime =
+		mSortId == FileSorts::GAMETIME_ASCENDING ||
+		mSortId == FileSorts::GAMETIME_DESCENDING;
 
 	mShowSystemName = (!system->isGameSystem() || system->isCollection()) && Settings::getInstance()->getBool("CollectionShowSystemInfo");
 
@@ -159,6 +164,26 @@ std::string GameNameFormatter::getDisplayName(FileData* fd, bool showFolderIcon)
 			name = SEPARATOR_BEFORE + std::to_string(year) + SEPARATOR_AFTER + name;
 		else
 			name = SEPARATOR_BEFORE + std::string("????") + SEPARATOR_AFTER + name;
+	}
+
+	if (mShowGameTime)
+	{
+		int seconds = atol(fd->getMetadata(MetaDataId::GameTime).c_str());
+		if (seconds > 0)
+		{
+			int h = 0, m = 0, s = 0;
+			h = (seconds / 3600) % 24;
+			m = (seconds / 60) % 60;
+			s = seconds % 60;
+
+			std::string timeText;
+			if (h > 0)
+				timeText = Utils::String::format("%02d:%02d:%02d", h, m, s);
+			else 
+				timeText = Utils::String::format("%02d:%02d", m, s);
+
+			name = name + " [" + timeText + "]";
+		}
 	}
 
 	if (showSystemNameByFile && mShowSystemName && !mShowSystemAfterYear)

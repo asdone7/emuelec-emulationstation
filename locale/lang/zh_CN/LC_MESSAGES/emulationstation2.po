@@ -2897,6 +2897,9 @@ msgstr "收藏夹"
 msgid "RANDOM"
 msgstr "随机"
 
+msgid "NAVIGATION BAR"
+msgstr "导航栏"
+
 msgid "SEARCH (HOLD)"
 msgstr "搜索(按住)"
 
@@ -2998,6 +3001,9 @@ msgstr "竖版街机"
 
 msgid "lightgun games"
 msgstr "光枪游戏"
+
+msgid "HAS MEDIAS"
+msgstr "取得媒体"
 
 msgid "collections"
 msgstr "合辑"
@@ -3758,8 +3764,8 @@ msgstr ""
 #~ "THE \"RANDOM VIDEO\" SCREENSAVER SHOWS VIDEOS FROM YOUR GAMELIST.\n"
 #~ "IF YOU DON'T HAVE VIDEOS, OR IF NONE OF THEM CAN BE PLAYED AFTER A FEW "
 #~ "ATTEMPTS, IT WILL DEFAULT TO \"BLACK\".\n"
-#~ "MORE OPTIONS IN THE \"UI SETTINGS\" -> \"RANDOM VIDEO SCREENSAVER SETTINGS"
-#~ "\" MENU."
+#~ "MORE OPTIONS IN THE \"UI SETTINGS\" -> \"RANDOM VIDEO SCREENSAVER "
+#~ "SETTINGS\" MENU."
 #~ msgstr ""
 #~ "屏保 \"随机视频\" 将显示游戏列表中的视频。\n"
 #~ "如果游戏列表中没有视频，或在尝试播放失败几次后，显示为\"黑屏\"。\n"

@@ -100,6 +100,7 @@ public:
 	virtual const bool getKidGame();
 	virtual const bool hasCheevos();
 
+	bool hasAnyMedia();
 	std::vector<std::string> getFileMedias();
 
 	const std::string getConfigurationName();
@@ -159,6 +160,9 @@ public:
 	std::set<std::string> getContentFiles();
 
 	void setSelectedGame();
+
+
+	std::string getProperty(const std::string& name);
 
 private:
 	std::string getKeyboardMappingFilePath();

@@ -25,6 +25,8 @@ GridGameListView::GridGameListView(Window* window, FolderData* root, const std::
 
 	const float padding = 0.01f;
 
+	mGrid.longMouseClick += this;
+
 	mGrid.setGridSizeOverride(gridSize);
 	mGrid.setPosition(mSize.x() * 0.1f, mSize.y() * 0.1f);
 	mGrid.setDefaultZIndex(20);
@@ -259,6 +261,8 @@ void GridGameListView::updateInfoPanel()
 	if (mRoot->getSystem()->isCollection())
 		updateHelpPrompts();
 
+	updateThemeExtrasBindings();
+
 	FileData* file = (mGrid.size() == 0 || mGrid.isScrolling()) ? NULL : mGrid.getSelected();
 	bool isClearing = mGrid.getObjects().size() == 0 && mGrid.getCursorIndex() == 0 && mGrid.getScrollingVelocity() == 0;
 	mDetails.updateControls(file, isClearing, mGrid.getCursorIndex() - mGrid.getLastCursor());
@@ -357,4 +361,15 @@ void GridGameListView::moveToRandomGame()
 		if (isShowing())
 			onShow();
 	}
+}
+
+void GridGameListView::onLongMouseClick(GuiComponent* component)
+{
+	if (component != &mGrid)
+		return;
+
+	if (Settings::getInstance()->getBool("GameOptionsAtNorth"))
+		showSelectedGameSaveSnapshots();
+	else
+		showSelectedGameOptions();
 }

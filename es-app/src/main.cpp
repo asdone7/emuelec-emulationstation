@@ -37,6 +37,7 @@
 #include "RetroAchievements.h"
 #include "TextToSpeech.h"
 #include "Paths.h"
+#include "resources/TextureData.h"
 
 #ifdef WIN32
 #include <Windows.h>
@@ -538,6 +539,7 @@ int main(int argc, char* argv[])
 	PowerSaver::init();
 	ViewController::init(&window);
 	CollectionSystemManager::init(&window);
+	VideoVlcComponent::init();
 
 	window.pushGui(ViewController::get());
 	if(!window.init(true, false))
@@ -593,6 +595,9 @@ int main(int argc, char* argv[])
 		}
 	}
 #endif
+
+	if (ApiSystem::getInstance()->isScriptingSupported(ApiSystem::PDFEXTRACTION))
+		TextureData::PdfHandler = ApiSystem::getInstance();
 
 	ApiSystem::getInstance()->getIpAdress();
 

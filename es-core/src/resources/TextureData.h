@@ -4,13 +4,23 @@
 
 #include <mutex>
 #include <string>
+#include <vector>
 #include "ImageIO.h"
 
 class TextureResource;
 
+class IPdfHandler
+{
+public:
+	virtual int getPdfPageCount(const std::string& fileName) = 0;
+	virtual std::vector<std::string> extractPdfImages(const std::string& fileName, int pageIndex = -1, int pageCount = 1, int quality = 0) = 0;
+};
+
 class TextureData
 {
 public:
+	static IPdfHandler* PdfHandler;
+
 	TextureData(bool tile, bool linear);
 	~TextureData();
 
@@ -19,12 +29,14 @@ public:
 	//!!!! Needs to be canonical path. Caller should check for duplicates before calling this
 	void initFromPath(const std::string& path);
 	bool initSVGFromMemory(const unsigned char* fileData, size_t length);
-	bool initImageFromMemory(const unsigned char* fileData, size_t length, int subImageIndex = 0);
+	bool initImageFromMemory(const unsigned char* fileData, size_t length, int subImageIndex = -1);
 	bool initFromRGBA(unsigned char* dataRGBA, size_t width, size_t height, bool copyData = true);
 
 	// Read the data into memory if necessary
 	bool load(bool updateCache = false);
 	bool loadFromCbz();
+	bool loadFromPdf();
+	bool loadFromVideo();
 
 	bool isLoaded();
 

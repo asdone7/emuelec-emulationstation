@@ -15,12 +15,15 @@
 BasicGameListView::BasicGameListView(Window* window, FolderData* root)
 	: ISimpleGameListView(window, root), mList(window)
 {
+	mList.longMouseClick += this;
+
 	mList.setSize(mSize.x(), mSize.y() * 0.8f);
 	mList.setPosition(0, mSize.y() * 0.2f);
 	mList.setDefaultZIndex(20);
 
 	mList.setCursorChangedCallback([&](const CursorState& /*state*/) 
 		{
+		updateThemeExtrasBindings();
 		  FileData* file = (mList.size() == 0 || mList.isScrolling()) ? NULL : mList.getSelected();
 		  if (file != nullptr)
 		    file->setSelectedGame();
@@ -222,4 +225,16 @@ int BasicGameListView::getCursorIndex()
 std::vector<FileData*> BasicGameListView::getFileDataEntries()
 {
 	return mList.getObjects();	
+}
+
+
+void BasicGameListView::onLongMouseClick(GuiComponent* component)
+{
+	if (component != &mList)
+		return;
+
+	if (Settings::getInstance()->getBool("GameOptionsAtNorth"))
+		showSelectedGameSaveSnapshots();
+	else
+		showSelectedGameOptions();
 }

@@ -50,14 +50,18 @@ public:
 	void showQuickSearch();
 	void launchSelectedGame();
 	void showSelectedGameOptions();
+	void showGamelistOptions();
 	void showSelectedGameSaveSnapshots();
 	void toggleFavoritesFilter();
 
 	virtual std::vector<HelpPrompt> getHelpPrompts() override;
 
 protected:	
+	void	  updateThemeExtrasBindings();
+
 	void	  updateFolderPath();
 	void      updateHeaderLogoAndText();
+	void	  goBack();
 
 	virtual std::string getQuickSystemSelectRightButton() = 0;
 	virtual std::string getQuickSystemSelectLeftButton() = 0;

@@ -31,7 +31,7 @@ namespace Utils
 
 		std::vector<std::string> split  (const std::string& s, char seperator, bool removeEmptyEntries = false);
 		std::vector<std::string> splitAny(const std::string& s, const std::string& seperator, bool removeEmptyEntries = false);
-		std::vector<std::string> extractStrings(const std::string& _string, const std::string& startDelimiter, const std::string& endDelimiter);
+		std::vector<std::string> extractStrings(const std::string& _string, const std::string& startDelimiter, const std::string& endDelimiter, bool keepDelimiter = false);
 
 		std::string join(const std::vector<std::string>& items, std::string separator);
 		int			compareIgnoreCase(const std::string& name1, const std::string& name2);
@@ -42,6 +42,7 @@ namespace Utils
 
 		int			toInteger(const std::string& string);
 		float		toFloat(const std::string& string);
+		bool		toBoolean(const std::string& string);
 
 		std::string decodeXmlString(const std::string& string);
 		std::string toHexString(unsigned int color);

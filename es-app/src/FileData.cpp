@@ -32,6 +32,7 @@
 #include "LocaleES.h"
 #include "guis/GuiMsgBox.h"
 #include "Paths.h"
+#include "resources/TextureData.h"
 
 FileData* FileData::mRunningGame = nullptr;
 
@@ -198,10 +199,10 @@ const std::string FileData::getThumbnailPath()
 				thumbnail = getPath();
 
 				auto ext = Utils::String::toLower(Utils::FileSystem::getExtension(thumbnail));
-				if (ext == ".pdf" && ResourceManager::getInstance()->fileExists(":/pdf.jpg"))
+				if (TextureData::PdfHandler == nullptr && ext == ".pdf" && ResourceManager::getInstance()->fileExists(":/pdf.jpg"))
 					return ":/pdf.jpg";
-				else if ((ext == ".mp4" || ext == ".avi" || ext == ".mkv" || ext == ".webm") && ResourceManager::getInstance()->fileExists(":/vid.jpg"))
-					return ":/vid.jpg";
+			/*	else if ((ext == ".mp4" || ext == ".avi" || ext == ".mkv" || ext == ".webm") && ResourceManager::getInstance()->fileExists(":/vid.jpg"))
+					return ":/vid.jpg";*/
 			}
 		}
 
@@ -230,6 +231,39 @@ const bool FileData::hasCheevos()
 {
 	if (Utils::String::toInteger(getMetadata(MetaDataId::CheevosId)) > 0)
 		return getSourceFileData()->getSystem()->isCheevosSupported();
+
+	return false;
+}
+
+bool FileData::hasAnyMedia()
+{
+	if (Utils::FileSystem::exists(getImagePath()) || Utils::FileSystem::exists(getThumbnailPath()) || Utils::FileSystem::exists(getVideoPath()))
+		return true;
+
+	for (auto mdd : mMetadata.getMDD())
+	{
+		if (mdd.type != MetaDataType::MD_PATH)
+			continue;
+
+		std::string path = mMetadata.get(mdd.key);
+		if (path.empty())
+			continue;
+
+		if (mdd.id == MetaDataId::Manual || mdd.id == MetaDataId::Magazine)
+		{
+			if (Utils::FileSystem::exists(path))
+				return true;
+		}
+		else if (mdd.id != MetaDataId::Image && mdd.id != MetaDataId::Thumbnail)
+		{
+			auto ext = Utils::String::toLower(Utils::FileSystem::getExtension(path));
+			if (ext != ".jpg" && ext != ".png" && ext != ".jpeg" && ext != ".gif")
+				continue;
+
+			if (Utils::FileSystem::exists(path))
+				return true;
+		}
+	}
 
 	return false;
 }
@@ -387,10 +421,10 @@ const std::string FileData::getImagePath()
 				image = getPath();
 
 				auto ext = Utils::String::toLower(Utils::FileSystem::getExtension(image));
-				if (ext == ".pdf" && ResourceManager::getInstance()->fileExists(":/pdf.jpg"))
+				if (TextureData::PdfHandler == nullptr && ext == ".pdf" && ResourceManager::getInstance()->fileExists(":/pdf.jpg"))
 					return ":/pdf.jpg";
-				else if ((ext == ".mp4" || ext == ".avi" || ext == ".mkv" || ext == ".webm") && ResourceManager::getInstance()->fileExists(":/vid.jpg"))
-					return ":/vid.jpg";
+				/* else if ((ext == ".mp4" || ext == ".avi" || ext == ".mkv" || ext == ".webm") && ResourceManager::getInstance()->fileExists(":/vid.jpg"))
+					return ":/vid.jpg"; */
 			}
 		}
 	}
@@ -1712,7 +1746,45 @@ void FileData::setSelectedGame()
 
 	std::string desc = getMetadata(MetaDataId::Desc);
 	if (!desc.empty())
-		TextToSpeech::getInstance()->say(desc, true);
+		TextToSpeech::getInstance()->say(desc, true);	
+}
 
+std::string FileData::getProperty(const std::string& name)
+{
+	if (name == "name")
+		return getName();
+
+	if (name == "rom")
+		return Utils::FileSystem::getFileName(getPath());
+
+	if (name == "path")
+		return getPath();
 	
+	if (name == "favorite")
+		return getFavorite() ? _("YES") : _("NO");
+
+	if (name == "hidden")
+		return getHidden() ? _("YES") : _("NO");
+
+	if (name == "kidGame")
+		return getKidGame() ? _("YES") : _("NO");
+
+	if (name == "gameTime")
+	{
+		int seconds = atol(getMetadata(MetaDataId::GameTime).c_str());
+		if (seconds == 0)
+			return "";
+		
+		int h = 0, m = 0, s = 0;
+		h = (seconds / 3600) % 24;
+		m = (seconds / 60) % 60;
+		s = seconds % 60;
+
+		if (h > 0)
+			return Utils::String::format("%02d:%02d:%02d", h, m, s);
+
+		return Utils::String::format("%02d:%02d", m, s);		
+	}
+
+	return getMetadata().get(name);	
 }
