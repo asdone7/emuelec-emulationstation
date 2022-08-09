@@ -57,8 +57,8 @@ namespace Renderer
 	Rect		getScreenRect(const Transform4x4f& transform, const Vector2f& size, bool viewPort)
 	{
 		auto rc = Rect(
-			transform.translation().x() * transform.r0().x(),
-			transform.translation().y() * transform.r1().y(),
+			transform.translation().x(),
+			transform.translation().y(),
 			size.x() * transform.r0().x(),
 			size.y() * transform.r1().y());
 
@@ -66,6 +66,30 @@ namespace Renderer
 			return screenToviewport(rc);
 
 		return rc;
+	}
+
+	Vector2i  physicalScreenToRotatedScreen(int x, int y)
+	{
+		int mx = x;
+		int my = y;
+
+		switch (Renderer::getScreenRotate())
+		{
+		case 1:
+			mx = Renderer::getScreenHeight() - mx;
+			std::swap(mx, my);
+			break;
+		case 2:
+			mx = Renderer::getScreenWidth() - mx;
+			my = Renderer::getScreenHeight() - my;
+			break;
+		case 3:
+			my = Renderer::getScreenWidth() - my;
+			std::swap(mx, my);
+			break;
+		}
+
+		return Vector2i(mx, my);
 	}
 
 	static void setIcon()
@@ -198,6 +222,17 @@ namespace Renderer
 		createContext();
 		setIcon();
 		setSwapInterval();
+		swapBuffers();
+
+#if WIN32
+		if (windowFlags & SDL_WINDOW_BORDERLESS)
+		{			
+			// If we don't do that, with some machines, the screen stays black... (Ambernic Win600)
+			SDL_SetWindowBordered(sdlWindow, SDL_bool::SDL_TRUE);
+			SDL_SetWindowBordered(sdlWindow, SDL_bool::SDL_FALSE);
+			SDL_SetWindowPosition(sdlWindow, 0, 0);
+		}
+#endif
 
 		return true;
 
@@ -467,6 +502,50 @@ namespace Renderer
 			return 1.0;
 
 		return (float) screenWidth / (float) screenHeight;
+	}
+
+	std::map<std::string, float> ratios =
+	{
+		{ "4/3",		   4.0f / 3.0f },
+		{ "16/9",          16.0f / 9.0f },
+		{ "16/10",         16.0f / 10.0f },
+		{ "16/15",         16.0f / 15.0f },
+		{ "21/9",          21.0f / 9.0f },
+		{ "1/1",           1 / 1 },
+		{ "2/1",           2.0f / 1.0f },
+		{ "3/2",           3.0f / 2.0f },
+		{ "3/4",           3.0f / 4.0f },
+		{ "4/1",           4.0f / 1.0f },
+		{ "9/16",          9.0f / 16.0f },
+		{ "5/4",           5.0f / 4.0f },
+		{ "6/5",           6.0f / 5.0f },
+		{ "7/9",           7.0f / 9.0f },
+		{ "8/3",           8.0f / 3.0f },
+		{ "8/7",           8.0f / 7.0f },
+		{ "19/12",         19.0f / 12.0f },
+		{ "19/14",         19.0f / 14.0f },
+		{ "30/17",         30.0f / 17.0f },
+		{ "32/9",          32.0f / 9.0f }
+	};
+
+	std::string  getAspectRatio()
+	{
+		float nearDist = 9999999;
+		std::string nearName = "";
+
+		float prop = Renderer::getScreenProportion();
+
+		for (auto ratio : ratios)
+		{
+			float dist = abs(prop - ratio.second);
+			if (dist < nearDist)
+			{
+				nearDist = dist;
+				nearName = ratio.first;
+			}
+		}
+
+		return nearName;
 	}
 
 	bool        isSmallScreen()    

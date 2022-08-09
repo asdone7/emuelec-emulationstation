@@ -25,6 +25,7 @@
 #include "guis/GuiTextEditPopupKeyboard.h"
 #include "TextToSpeech.h"
 #include "Binding.h"
+#include "guis/GuiRetroAchievements.h"
 
 // buffer values for scrolling velocity (left, stopped, right)
 const int logoBuffersLeft[] = { -5, -2, -1 };
@@ -54,9 +55,6 @@ SystemView::SystemView(Window* window) : IList<SystemViewData, SystemData*>(wind
 
 SystemView::~SystemView()
 {
-	for (auto sb : mStaticVideoBackgrounds) delete sb;
-	mStaticVideoBackgrounds.clear();
-
 	for(auto sb : mStaticBackgrounds) delete sb;
 	mStaticBackgrounds.clear();
 
@@ -410,6 +408,9 @@ void SystemView::showQuickSearch()
 
 void SystemView::showNetplay()
 {
+	if (!SystemData::isNetplayActivated() && SystemConf::getInstance()->getBool("global.netplay"))
+		return;
+
 	if (ApiSystem::getInstance()->getIpAdress() == "NOT CONNECTED")
 		mWindow->pushGui(new GuiMsgBox(mWindow, _("YOU ARE NOT CONNECTED TO A NETWORK"), _("OK"), nullptr));
 	else
@@ -677,9 +678,6 @@ void SystemView::update(int deltaTime)
 	for(auto sb : mStaticBackgrounds)
 		sb->update(deltaTime);
 
-	for (auto sb : mStaticVideoBackgrounds)
-		sb->update(deltaTime);
-	
 	listUpdate(deltaTime);
 	mSystemInfo.update(deltaTime);
 
@@ -980,7 +978,8 @@ void SystemView::render(const Transform4x4f& parentTrans)
 
 	Transform4x4f trans = getTransform() * parentTrans;
 
-	if (!Renderer::isVisibleOnScreen(trans.translation().x(), trans.translation().y(), mSize.x(), mSize.y()))
+	auto rect = Renderer::getScreenRect(trans, mSize);
+	if (!Renderer::isVisibleOnScreen(rect))
 		return;
 
 	auto systemInfoZIndex = mSystemInfo.getZIndex();
@@ -989,9 +988,6 @@ void SystemView::render(const Transform4x4f& parentTrans)
 	renderExtras(trans, INT16_MIN, minMax.first);
 
 	for (auto sb : mStaticBackgrounds)
-		sb->render(trans);
-
-	for (auto sb : mStaticVideoBackgrounds)
 		sb->render(trans);
 
 	if (mCarousel.zIndex > mSystemInfo.getZIndex()) {
@@ -1096,18 +1092,17 @@ void  SystemView::getViewElements(const std::shared_ptr<ThemeData>& theme)
 		}
 	}
 
-	for (auto sb : mStaticVideoBackgrounds) delete sb;
-	mStaticVideoBackgrounds.clear();
-	
 	for (auto name : theme->getElementNames("system", "video"))
 	{
 		if (Utils::String::startsWith(name, "staticBackground"))
 		{
 			VideoVlcComponent* sv = new VideoVlcComponent(mWindow);
 			sv->applyTheme(theme, "system", name, ThemeFlags::ALL);
-			mStaticVideoBackgrounds.push_back(sv);
+			mStaticBackgrounds.push_back(sv);
 		}
 	}
+
+	std::stable_sort(mStaticBackgrounds.begin(), mStaticBackgrounds.end(), [](GuiComponent* a, GuiComponent* b) { return b->getZIndex() > a->getZIndex(); });
 
 	mViewNeedsReload = false;
 }
@@ -1451,7 +1446,8 @@ void SystemView::renderExtras(const Transform4x4f& trans, float lower, float upp
 				size.y() = Renderer::getScreenHeight() - extrasTrans.translation()[1];
 		}
 
-		if (!Renderer::isVisibleOnScreen(extrasTrans.translation()[0], extrasTrans.translation()[1], mSize.x(), mSize.y()))
+		auto rectExtra = Renderer::getScreenRect(extrasTrans, mSize);
+		if (!Renderer::isVisibleOnScreen(rectExtra))
 			continue;
 
 		if (mExtrasFadeOpacity && mExtrasFadeOldCursor == index)
@@ -1609,9 +1605,6 @@ void  SystemView::getDefaultElements(void)
 
 	for (auto sb : mStaticBackgrounds) delete sb;
 	mStaticBackgrounds.clear();
-
-	for (auto sb : mStaticVideoBackgrounds) delete sb;
-	mStaticVideoBackgrounds.clear();
 }
 
 void SystemView::getCarouselFromTheme(const ThemeData::ThemeElement* elem)
@@ -1730,9 +1723,6 @@ void SystemView::onShow()
 	for (auto sb : mStaticBackgrounds)
 		sb->onShow();
 
-	for (auto sb : mStaticVideoBackgrounds)
-		sb->onShow();
-
 	if (getSelected() != nullptr)
 		TextToSpeech::getInstance()->say(getSelected()->getFullName());
 
@@ -1745,9 +1735,6 @@ void SystemView::onHide()
 
 	for (auto sb : mStaticBackgrounds)
 		sb->onHide();
-
-	for (auto sb : mStaticVideoBackgrounds)
-		sb->onHide();
 }
 
 void SystemView::onScreenSaverActivate()
@@ -1755,7 +1742,7 @@ void SystemView::onScreenSaverActivate()
 	mScreensaverActive = true;
 	updateExtras([this](GuiComponent* p) { p->onScreenSaverActivate(); });
 
-	for (auto sb : mStaticVideoBackgrounds)
+	for (auto sb : mStaticBackgrounds)
 		sb->onScreenSaverActivate();
 }
 
@@ -1764,7 +1751,7 @@ void SystemView::onScreenSaverDeactivate()
 	mScreensaverActive = false;
 	updateExtras([this](GuiComponent* p) { p->onScreenSaverDeactivate(); });
 
-	for (auto sb : mStaticVideoBackgrounds)
+	for (auto sb : mStaticBackgrounds)
 		sb->onScreenSaverDeactivate();
 }
 
@@ -1773,7 +1760,7 @@ void SystemView::topWindow(bool isTop)
 	mDisable = !isTop;
 	updateExtras([this, isTop](GuiComponent* p) { p->topWindow(isTop); });
 
-	for (auto sb : mStaticVideoBackgrounds)
+	for (auto sb : mStaticBackgrounds)
 		sb->topWindow(isTop);
 }
 
@@ -1950,3 +1937,65 @@ void SystemView::onMouseWheel(int delta)
 	mScrollVelocity = 0;
 }
 
+
+
+bool SystemView::onAction(const std::string& action)
+{
+	if (action == "netplay")
+	{
+		showNetplay();
+		return true;
+	}
+
+	if (action == "navigationbar" || action == "back")
+	{
+		showNavigationBar();
+		return true;
+	}
+
+	if (action == "search")
+	{
+		showQuickSearch();
+		return true;
+	}
+
+	if (action == "launch" || action == "open")
+	{
+		stopScrolling();
+		ViewController::get()->goToGameList(getSelected());
+		return true;
+	}
+
+	if (action == "random")
+	{
+		setCursor(SystemData::getRandomSystem());
+		return true;
+	}
+
+	if (action == "prev")
+	{
+		listInput(-1);
+		return true;
+	}
+
+	if (action == "next")
+	{
+		listInput(1);
+		return true;
+	}
+
+	if (action == "cheevos")
+	{
+		if (SystemConf::getInstance()->getBool("global.retroachievements") && !Settings::getInstance()->getBool("RetroachievementsMenuitem") && SystemConf::getInstance()->get("global.retroachievements.username") != "")
+		{
+			if (ApiSystem::getInstance()->getIpAdress() == "NOT CONNECTED")
+				mWindow->pushGui(new GuiMsgBox(mWindow, _("YOU ARE NOT CONNECTED TO A NETWORK"), _("OK"), nullptr));				
+			else
+				GuiRetroAchievements::show(mWindow);
+		}
+
+		return true;
+	}
+	
+	return false;
+}

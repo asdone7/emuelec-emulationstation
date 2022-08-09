@@ -64,7 +64,7 @@ msgstr "完成"
 msgid "OK"
 msgstr "确定"
 
-msgid "SAVE STATE MANAGER"
+msgid "SAVESTATE MANAGER"
 msgstr "显示保存状态管理器"
 
 msgid "START NEW GAME"
@@ -268,6 +268,9 @@ msgstr "RetroArch成就"
 msgid "HARDCORE MODE"
 msgstr "专家模式"
 
+msgid "Disable loading states, rewind and cheats for more points."
+msgstr "禁止使用加载状态、倒带和金手指来获得更多分数"
+
 msgid "RICH PRESENCE"
 msgstr "细节呈现"
 
@@ -282,6 +285,9 @@ msgstr "排行榜"
 
 msgid "VERBOSE MODE"
 msgstr "详细模式"
+
+msgid "Show achievement progression on game launch and other notifications."
+msgstr "在游戏启动和其他通知中显示成就进展"
 
 msgid "AUTOMATIC SCREENSHOT"
 msgstr "自动截图"
@@ -962,11 +968,11 @@ msgstr "随机游戏"
 msgid "SORT GAMES BY"
 msgstr "游戏排序方式"
 
-msgid "OTHER FILTERS"
-msgstr "其他筛选器"
-
 msgid "COLLECTION"
 msgstr "合辑"
+
+msgid "CUSTOM COLLECTION"
+msgstr "自定义合辑"
 
 msgid "GAMELIST VIEW STYLE"
 msgstr "游戏列表样式"
@@ -1738,8 +1744,8 @@ msgstr "音频配置文件"
 msgid "SCREEN ROTATION"
 msgstr "旋转屏幕"
 
-msgid "0 DEGREES (AUTO)"
-msgstr "0 度 (自动)"
+msgid "0 DEGREES"
+msgstr "0 度"
 
 msgid "90 DEGREES"
 msgstr "90 度"
@@ -1969,6 +1975,30 @@ msgstr "保存状态"
 msgid "AUTO SAVE/LOAD"
 msgstr "自动保存/载入"
 
+msgid "Load latest savestate on game launch and savestate when exiting game."
+msgstr "在游戏启动时加载最新的保存状态，退出游戏时会对游戏即时存档"
+
+msgid "INCREMENT PER SAVE"
+msgstr "全部增量存储状态"
+
+msgid "Never overwrite old savestates, always make new ones."
+msgstr "永不覆盖旧的存储状态，始终创建新的存储状态"
+
+msgid "INCREMENT SLOT"
+msgstr "增量槽"
+
+msgid "Increment slot on a new game."
+msgstr "新游戏增加增量槽"
+
+msgid "DO NOT INCREMENT"
+msgstr "不要增量槽"
+
+msgid "Use current slot on a new game."
+msgstr "在新游戏中使用当前插槽"
+
+msgid "SHOW SAVESTATE MANAGER"
+msgstr "显示保存状态管理器"
+
 msgid "INCREMENTAL SAVESTATES"
 msgstr "增量存储状态"
 
@@ -1987,11 +2017,11 @@ msgstr "总是"
 msgid "IF NOT EMPTY"
 msgstr "如果不为空"
 
-msgid "Display save state manager before launching a game."
+msgid "Display savestate manager before launching a game."
 msgstr "启动游戏前显示保存状态管理器"
 
 msgid "PER SYSTEM ADVANCED CONFIGURATION"
-msgstr "按系统配置"
+msgstr "全部按系统配置"
 
 msgid "SCRAPER IS RUNNING. DO YOU WANT TO STOP IT?"
 msgstr "正在抓取中，您要中断吗?"
@@ -2029,11 +2059,29 @@ msgstr "%iP 控制器"
 msgid "default"
 msgstr "默认"
 
+msgid "GUNS BORDER SIZE"
+msgstr "枪边框大小"
+
+msgid "THIN"
+msgstr "小"
+
+msgid "MEDIUM"
+msgstr "中"
+
+msgid "BIG"
+msgstr "大"
+
+msgid "RECOIL"
+msgstr "后坐力"
+
 msgid "SHOW CONTROLLER ACTIVITY"
 msgstr "显示控制器活动"
 
 msgid "SHOW CONTROLLER BATTERY LEVEL"
 msgstr "显示控制器电池电量"
+
+msgid "SINDEN GUNS"
+msgstr "SINDEN 枪"
 
 msgid "YOU MUST APPLY THE THEME BEFORE EDITING ITS CONFIGURATION"
 msgstr "您必须在编辑主题配置之前应用主题"
@@ -2257,6 +2305,12 @@ msgstr "重启"
 msgid "REALLY RESTART?"
 msgstr "是否重新启动?"
 
+msgid "SUSPEND SYSTEM"
+msgstr "暂停系统"
+
+msgid "REALLY SUSPEND ?"
+msgstr "确定暂停 ?"
+
 msgid "SHUTDOWN SYSTEM"
 msgstr "关机"
 
@@ -2334,6 +2388,9 @@ msgstr "使用HLE BIOS(没有BIOS才开,开启后和普通存档不通用)"
 
 msgid "AUTO SAVE/LOAD ON GAME LAUNCH"
 msgstr "自动保存/加载"
+
+msgid "Load latest save state on game launch and save state when exiting game."
+msgstr "在游戏启动时加载最新保存状态，并在退出游戏时保存状态"
 
 msgid "SHADERS SET"
 msgstr "设置着色器"

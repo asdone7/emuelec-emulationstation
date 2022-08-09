@@ -103,7 +103,8 @@ public:
 		BACKUP = 21,
 		INSTALL = 22,
 		SUPPORTFILE = 23,
-		UPGRADE = 24
+		UPGRADE = 24,
+		SUSPEND = 25
 	};
 
 	virtual bool isScriptingSupported(ScriptId script);
@@ -212,8 +213,8 @@ public:
 
 	void callBatoceraPreGameListsHook();
 
-	bool	getBrighness(int& value);
-	void	setBrighness(int value);
+	bool	getBrightness(int& value);
+	void	setBrightness(int value);
 
 	std::vector<std::string> getWifiNetworks(bool scan = false);
 
@@ -236,6 +237,7 @@ public:
 	virtual std::vector<PadInfo> getPadsInfo();
 	virtual std::string getHostsName();
 	virtual bool emuKill();
+	virtual void suspend();
 	
 protected:
 	ApiSystem();

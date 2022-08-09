@@ -21,6 +21,7 @@
 #include "ThreadedHasher.h"
 #include <unordered_set>
 #include <algorithm>
+#include <functional>
 #include "SaveStateRepository.h"
 #include "Paths.h"
 
@@ -29,6 +30,18 @@
 #endif
 
 using namespace Utils;
+
+static std::map<std::string, std::function<std::string(SystemData*)>> properties =
+{
+	{ "name",			[] (SystemData* sys) { return sys->getName(); } },
+	{ "fullName",		[] (SystemData* sys) { return sys->getFullName(); } },
+	{ "manufacturer",	[] (SystemData* sys) { return sys->getSystemMetadata().manufacturer; } },
+	{ "theme",			[] (SystemData* sys) { return sys->getThemeFolder(); } },
+	{ "releaseYear",	[] (SystemData* sys) { return std::to_string(sys->getSystemMetadata().releaseYear); } },
+	{ "hardwareType",	[] (SystemData* sys) { return sys->getSystemMetadata().hardwareType; } },
+	{ "command",		[] (SystemData* sys) { return sys->getSystemEnvData()->mLaunchCommand; } },
+	{ "group",			[] (SystemData* sys) { return sys->getSystemEnvData()->mGroup; } },	
+};
 
 VectorEx<SystemData*> SystemData::sSystemVector;
 bool SystemData::IsManufacturerSupported = false;
@@ -467,6 +480,11 @@ void SystemData::createGroupedSystems()
 		if (root->getChildren().size() > 0 && !existingSystem)
 		{
 			system->loadTheme();
+
+			auto defaultView = Settings::getInstance()->getString(system->getName() + ".defaultView");
+			auto gridSizeOverride = Vector2f::parseString(Settings::getInstance()->getString(system->getName() + ".gridSize"));
+			system->setSystemViewMode(defaultView, gridSizeOverride, false);
+
 			sSystemVector.push_back(system);
 		}
 		
@@ -706,6 +724,7 @@ bool SystemData::loadConfig(Window* window)
 {
 	deleteSystems();
 	ThemeData::setDefaultTheme(nullptr);
+	UIModeController::getInstance(); // Init UIModeController before loading systems
 
 	std::string path = getConfigPath();
 
@@ -1390,31 +1409,83 @@ void SystemData::loadTheme()
 	{
 		// build map with system variables for theme to use,
 		std::map<std::string, std::string> sysData;
-		sysData.insert(std::pair<std::string, std::string>("system.name", getName()));
-		sysData.insert(std::pair<std::string, std::string>("system.theme", getThemeFolder()));
-		sysData.insert(std::pair<std::string, std::string>("system.fullName", Utils::String::proper(getFullName())));
 
-		sysData.insert(std::pair<std::string, std::string>("system.manufacturer", getSystemMetadata().manufacturer));
-		sysData.insert(std::pair<std::string, std::string>("system.hardwareType", Utils::String::proper(getSystemMetadata().hardwareType)));
+		// Global variables
+		sysData["global.help"] = Settings::getInstance()->getBool("ShowHelpPrompts") ? "true" : "false";
+		sysData["global.clock"] = Settings::DrawClock() ? "true" : "false";
+		sysData["global.architecture"] = getArchString();
+
+		sysData["global.cheevos"] = SystemConf::getInstance()->getBool("global.retroachievements") ? "true" : "false";
+		sysData["global.cheevos.username"] = SystemConf::getInstance()->getBool("global.retroachievements") ? SystemConf::getInstance()->get("global.retroachievements.username") : "";
+
+		sysData["global.netplay"] = SystemConf::getInstance()->getBool("global.netplay") ? "true" : "false";
+		sysData["global.netplay.username"] = SystemConf::getInstance()->getBool("global.netplay") ? SystemConf::getInstance()->get("global.netplay.nickname") : "";
+
+		// Screen
+		sysData["screen.width"] = std::to_string(Renderer::getScreenWidth());
+		sysData["screen.height"] = std::to_string(Renderer::getScreenHeight());
+		sysData["screen.ratio"] = Renderer::getAspectRatio();
+		sysData["screen.vertical"] = Renderer::isVerticalScreen() ? "true" : "false";
+
+		// Retrocompatibility
+		sysData["cheevos.username"] = SystemConf::getInstance()->getBool("global.retroachievements") ? SystemConf::getInstance()->get("global.retroachievements.username") : "";
+
+		// System variables
+		sysData["system.cheevos"] = SystemConf::getInstance()->getBool("global.retroachievements") && (isCheevosSupported() || isCollection() || isGameSystem()) ? "true" : "false";
+		sysData["system.netplay"] = SystemConf::getInstance()->getBool("global.netplay") && isNetplaySupported() ? "true" : "false";
+		sysData["system.savestates"] = isCurrentFeatureSupported(EmulatorFeatures::autosave) ? "true" : "false";
 
 		if (Settings::getInstance()->getString("SortSystems") == "hardware")
-			sysData.insert(std::pair<std::string, std::string>("system.sortedBy", Utils::String::proper(getSystemMetadata().hardwareType)));
+			sysData["system.sortedBy"] = Utils::String::proper(getSystemMetadata().hardwareType);
 		else
-			sysData.insert(std::pair<std::string, std::string>("system.sortedBy", getSystemMetadata().manufacturer));
+			sysData["system.sortedBy"] = getSystemMetadata().manufacturer;
 
 		if (getSystemMetadata().releaseYear > 0)
 		{
-			sysData.insert(std::pair<std::string, std::string>("system.releaseYearOrNull", std::to_string(getSystemMetadata().releaseYear)));
-			sysData.insert(std::pair<std::string, std::string>("system.releaseYear", std::to_string(getSystemMetadata().releaseYear)));
+			sysData["system.releaseYearOrNull"] = std::to_string(getSystemMetadata().releaseYear);
+			sysData["system.releaseYear"] = std::to_string(getSystemMetadata().releaseYear);
 		}
 		else
-			sysData.insert(std::pair<std::string, std::string>("system.releaseYear", _("Unknown")));
+			sysData["system.releaseYear"] = _("Unknown");
+		
+		for (auto property : properties)
+		{
+			auto name = "system." + property.first;
+			if (sysData.find(name) == sysData.cend())
+				sysData.insert(std::pair<std::string, std::string>("system." + property.first, property.second(this)));
+		}
 
-		if (SystemConf::getInstance()->getBool("global.retroachievements") && (isCheevosSupported() || isCollection() || isGroupSystem()))
-			sysData.insert(std::pair<std::string, std::string>("system.cheevos", "true"));
+		// Variables 
+		/*
+		global.architecture
+		global.help					( bool )
+		global.clock				( bool )
+		global.cheevos				( bool )
+		global.cheevos.username
+		global.netplay				( bool )
+		global.netplay.username
+		global.language
+		screen.width				( float )
+		screen.height				( float ) 
+		screen.ratio
+		screen.vertical             ( bool )
+		system.cheevos				( bool )
+		system.netplay				( bool )
+		system.savestates			( bool )
+		system.fullName
+		system.group
+		system.hardwareType
+		system.manufacturer
+		system.name
+		system.releaseYear
+		system.releaseYearOrNull
+		system.sortedBy
+		system.theme
+		system.command
 
-		if (SystemConf::getInstance()->getBool("global.retroachievements"))
-			sysData.insert(std::pair<std::string, std::string>("cheevos.username", SystemConf::getInstance()->get("global.retroachievements.username")));
+		lang					
+		cheevos.username		-> retrocompat
+		*/
 
 		mTheme->loadFile(getThemeFolder(), sysData, path);
 	}
@@ -1814,7 +1885,10 @@ bool SystemData::getShowFilenames()
 {
 	if (mShowFilenames == nullptr)
 	{
-		auto curFn = Settings::getInstance()->getString(getName() + ".ShowFilenames");
+		auto group = getParentGroupSystem();
+		std::string name = group ? group->getName() : getName();
+
+		auto curFn = Settings::getInstance()->getString(name + ".ShowFilenames");
 		if (curFn.empty())
 			mShowFilenames = std::make_shared<bool>(Settings::getInstance()->getBool("ShowFilenames"));
 		else
@@ -1896,29 +1970,13 @@ int SystemData::getShowFlags()
 	return Utils::String::toInteger(spf);
 }
 
-
 std::string SystemData::getProperty(const std::string& name)
 {
-	if (name == "name")
-		return getName();
+	auto it = properties.find(name);
+	if (it != properties.cend())
+		return it->second(this);
 
-	if (name == "fullName")
-		return getFullName();
-
-	if (name == "manufacturer")
-		return  getSystemMetadata().manufacturer;
-
-	if (name == "releaseYear")
-		return std::to_string(getSystemMetadata().releaseYear);
-
-	if (name == "hardwareType")
-		return getSystemMetadata().hardwareType;
-
-	if (name == "command" && getSystemEnvData() != nullptr)
-		return getSystemEnvData()->mLaunchCommand;
-
-	if (name == "group" && getSystemEnvData() != nullptr)
-		return getSystemEnvData()->mGroup;
+	// Statistics
 
 	GameCountInfo* info = getGameCountInfo();
 	if (info == nullptr)

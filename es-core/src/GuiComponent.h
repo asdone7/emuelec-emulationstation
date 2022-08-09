@@ -166,9 +166,6 @@ public:
 
 	virtual HelpStyle getHelpStyle();
 
-	// Returns true if the component is busy doing background processing (e.g. HTTP downloads)
-	bool isProcessing() const;
-
 	void animateTo(Vector2f from, Vector2f to, unsigned int flags = 0xFFFFFFFF, int delay = 350);
 	void animateTo(Vector2f from, unsigned int flags = AnimateFlags::OPACITY | AnimateFlags::SCALE, int delay = 350) { animateTo(from, from, flags, delay); }
 
@@ -209,9 +206,13 @@ public:
 	virtual void onMouseEnter();
 	virtual void onMouseMove(int x, int y);
 	virtual void onMouseWheel(int delta);
-	virtual bool onMouseClick(int button, bool pressed, int x, int y) { return false; }
+	virtual bool onMouseClick(int button, bool pressed, int x, int y);
 
 	virtual bool hitTest(int x, int y, Transform4x4f& parentTransform, std::vector<GuiComponent*>* pResult = nullptr);
+
+	virtual bool onAction(const std::string& action);
+	
+	void setClickAction(const std::string& action) { mClickAction = action; }
 
 protected:
 	void beginCustomClipRect();
@@ -240,12 +241,12 @@ protected:
 	float mDefaultZIndex = 0;
 	float mZIndex = 0;
 
-	bool mIsProcessing;
 	bool mVisible;
 	bool mShowing;
 	bool mStaticExtra;
 
 	bool mTransformDirty;
+	bool mChildZIndexDirty;
 
 	bool mIsMouseOver;
 
@@ -254,6 +255,9 @@ public:
 	static bool isLaunchTransitionRunning;
 
 private:
+	std::string		mClickAction;
+	bool			mMousePressed;
+
 	Transform4x4f mTransform; //Don't access this directly! Use getTransform()!
 	Vector4f mClipRect;
 
