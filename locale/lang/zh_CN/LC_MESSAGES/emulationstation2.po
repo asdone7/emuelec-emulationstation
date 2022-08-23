@@ -1198,8 +1198,16 @@ msgstr "界面不锁定"
 msgid "QUIT"
 msgstr "退出"
 
+msgid "Force the game to render in this aspect ratio."
+msgstr "强制游戏按此画面比例渲染"
+
 msgid "VIDEO MODE"
 msgstr "视频模式"
+
+msgid ""
+"Sets the display's resolution. Does not affect the rendering resolution."
+msgstr ""
+"设置显示器的分辨率. 但不影响渲染分辨率"
 
 msgid "You are about to set EmuELEC resolution to:"
 msgstr "你即将设置 EmuELEC 分辨率为:"
@@ -2059,8 +2067,8 @@ msgstr "%iP 控制器"
 msgid "default"
 msgstr "默认"
 
-msgid "GUNS BORDER SIZE"
-msgstr "枪边框大小"
+msgid "BORDER SIZE"
+msgstr "边框大小"
 
 msgid "THIN"
 msgstr "小"
@@ -2074,14 +2082,35 @@ msgstr "大"
 msgid "RECOIL"
 msgstr "后坐力"
 
+msgid "GUN"
+msgstr "枪"
+
+msgid "MACHINE GUN"
+msgstr "机器枪"
+
+msgid "QUIET GUN"
+msgstr "安静的枪"
+
+msgid "QUIET MACHINE GUN"
+msgstr "安静的机器枪"
+
+msgid "MODE"
+msgstr "模式"
+
+msgid "JOYSTICK"
+msgstr "摇杆"
+
 msgid "SHOW CONTROLLER ACTIVITY"
 msgstr "显示控制器活动"
 
 msgid "SHOW CONTROLLER BATTERY LEVEL"
 msgstr "显示控制器电池电量"
 
-msgid "SINDEN GUNS"
-msgstr "SINDEN 枪"
+msgid "SINDEN GUN SETTINGS"
+msgstr "SINDEN 枪设置"
+
+msgid "WIIMOTE GUN SETTINGS"
+msgstr "Wii的控制器(摇杆) 设置"
 
 msgid "YOU MUST APPLY THE THEME BEFORE EDITING ITS CONFIGURATION"
 msgstr "您必须在编辑主题配置之前应用主题"
