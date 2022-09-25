@@ -679,8 +679,11 @@ msgstr "当抓取时，此功能被禁用"
 msgid "%d%% (%d of %d)"
 msgstr ""
 
-msgid "Points"
-msgstr "积分"
+msgid "Points (hardcore)"
+msgstr "点数 (高端玩家)"
+
+msgid "Softcore points"
+msgstr "积分 (菜鸟玩家)"
 
 msgid "Rank"
 msgstr "排名"
@@ -688,8 +691,11 @@ msgstr "排名"
 msgid "VIEW DETAILS"
 msgstr "查看详细信息"
 
+msgid "Points"
+msgstr "积分"
+
 msgid "Unlocked on"
-msgstr "解锁"
+msgstr "已解锁于"
 
 msgid "THIS GAME HAS NO ACHIEVEMENTS YET"
 msgstr "这个游戏还没有成就"
@@ -823,174 +829,6 @@ msgstr "动态合辑"
 
 msgid "CUSTOM GAME COLLECTIONS"
 msgstr "自定游戏合辑"
-
-msgid "dim"
-msgstr "暗灰"
-
-msgid "black"
-msgstr "黑"
-
-msgid "random video"
-msgstr "随机视频"
-
-msgid "slideshow"
-msgstr "片段展示"
-
-msgid "always"
-msgstr "总是"
-
-msgid "start & end"
-msgstr "开始和结束"
-
-msgid "never"
-msgstr "从未"
-
-msgid "systems"
-msgstr "系统"
-
-msgid "random"
-msgstr "随机"
-
-msgid "SCREENSAVER SETTINGS"
-msgstr "屏保设置"
-
-msgid "START SCREENSAVER AFTER"
-msgstr "屏保等待时间"
-
-msgid "SCREENSAVER TYPE"
-msgstr "屏保样式"
-
-msgid "STOP MUSIC ON SCREENSAVER"
-msgstr "录屏时停止音乐"
-
-msgid "RANDOM VIDEO SCREENSAVER SETTINGS"
-msgstr "屏保-随机视频设置"
-
-msgid "VIDEO DURATION (SECS)"
-msgstr "视频时长(秒)"
-
-msgid "USE OMX PLAYER FOR SCREENSAVER"
-msgstr "屏保使用 OMX 播放器"
-
-msgid "SHOW GAME INFO"
-msgstr "显示游戏信息"
-
-msgid "USE MARQUEE AS GAME INFO"
-msgstr "使用悬浮蒙版图片作为游戏信息"
-
-msgid "DECORATION SET USED"
-msgstr "使用装饰"
-
-msgid "STRETCH VIDEOS"
-msgstr "拉伸视频"
-
-msgid "MUTE VIDEO AUDIO"
-msgstr "视频静音"
-
-msgid "SCREENSAVER CONTROLS"
-msgstr "屏保控制选项"
-
-msgid "USE CUSTOM VIDEOS"
-msgstr "使用自定视频"
-
-msgid "CUSTOM VIDEO DIRECTORY"
-msgstr "自定视频路径"
-
-msgid "USE VIDEOS IN SUBFOLDERS OF CUSTOM DIRECTORY"
-msgstr "在自定义目录的子文件夹中使用视频"
-
-msgid "CUSTOM VIDEO FILE EXTENSIONS"
-msgstr "自定义视频扩展名"
-
-msgid "SLIDESHOW SCREENSAVER SETTINGS"
-msgstr "屏保-幻灯片设置"
-
-msgid "IMAGE DURATION (SECS)"
-msgstr "图像替换 (SECS)"
-
-msgid "STRETCH IMAGES"
-msgstr "拉伸图像"
-
-msgid "USE CUSTOM IMAGES"
-msgstr "使用自定图像"
-
-msgid "CUSTOM IMAGE DIRECTORY"
-msgstr "自定图像目录"
-
-msgid "USE IMAGES IN SUBFOLDERS OF CUSTOM DIRECTORY"
-msgstr "在自定义目录的子文件夹中使用图像"
-
-msgid "CUSTOM IMAGE FILE EXTENSIONS"
-msgstr "自定义图像扩展名"
-
-msgid "INFORMATION"
-msgstr "系统信息"
-
-msgid "VERSION"
-msgstr "版本"
-
-msgid "USER DISK USAGE"
-msgstr "用户磁盘使用"
-
-msgid "SYSTEM DISK USAGE"
-msgstr "系统磁盘使用"
-
-msgid "SYSTEM"
-msgstr "系统"
-
-msgid "VIDEO DRIVER"
-msgstr "视频驱动"
-
-msgid "FORGET A BLUETOOTH DEVICE"
-msgstr "移除此蓝牙设备"
-
-msgid "REMOVE ALL"
-msgstr "移除所有"
-
-msgid "NO BLUETOOTH DEVICES FOUND"
-msgstr "未发现蓝牙设备"
-
-msgid "BLUETOOTH DEVICES HAVE BEEN DELETED."
-msgstr "蓝牙设备已被删除"
-
-msgid "VIEW OPTIONS"
-msgstr "视图选项"
-
-msgid "NAVIGATION"
-msgstr "导航"
-
-msgid "JUMP TO GAME BEGINNING WITH THE LETTER"
-msgstr "跳转到..."
-
-msgid "SELECT RANDOM GAME"
-msgstr "随机游戏"
-
-msgid "SORT GAMES BY"
-msgstr "游戏排序方式"
-
-msgid "COLLECTION"
-msgstr "合辑"
-
-msgid "CUSTOM COLLECTION"
-msgstr "自定义合辑"
-
-msgid "GAMELIST VIEW STYLE"
-msgstr "游戏列表样式"
-
-msgid "automatic"
-msgstr "自动"
-
-msgid "VIEW CUSTOMIZATION"
-msgstr "视图自定义"
-
-msgid "ADVANCED SYSTEM OPTIONS"
-msgstr "高级系统选项"
-
-msgid "RESET FILTERS"
-msgstr "重置筛选"
-
-msgid "FILTER GAMES BY TEXT"
-msgstr "用文本筛选游戏"
 
 msgid "IMAGE SOURCE"
 msgstr "图片数据"
