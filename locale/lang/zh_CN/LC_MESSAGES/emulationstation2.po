@@ -1917,6 +1917,18 @@ msgstr "中"
 msgid "BIG"
 msgstr "大"
 
+msgid "BORDER MODE"
+msgstr "边框模式"
+
+msgid "NORMAL"
+msgstr "标准"
+
+msgid "IN GAME ONLY"
+msgstr "仅在游戏中"
+
+msgid "HIDDEN"
+msgstr "隐藏"
+
 msgid "RECOIL"
 msgstr "后坐力"
 
